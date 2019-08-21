@@ -14,6 +14,8 @@
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NjUxYjBkOC02M2RlLTQ1NWQtODJhMi02NWQ0MTcyNjEwMmQiLCJpZCI6NzgzOCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU1MDU4MjAxNH0.1VXJoEl00MYI4xaK3bkJBm5Z1Dt92vSYuwZFsBYg_fQ';
 var viewer = new Cesium.Viewer('cesiumContainer');
 var entities = viewer.entities;
+    
+var currentInfo = {};
 var oldInfo = {};
 
 
@@ -27,7 +29,7 @@ var oldInfo = {};
     var request = new XMLHttpRequest();
 
     function requestApi(){
-        request.onload = drawMarkers;
+        request.onload = networkReceive;
         request.open("GET", url, true);
         request.send();
     }
@@ -98,23 +100,27 @@ function myParseJson(tekstas){
 
       
 
-    function deleteOld(newInfo){
+    function deleteOld(){
         Object.keys(oldInfo)
-        .filter(key=> newInfo[key]==null)
+        .filter(key=> currentInfo[key]==null)
         .forEach(key=>entities.removeById(key));
     }
+    
+    fun drawPlanes(){
+      entities.suspendEvents()
+     Object.values(currentInfo).forEach(info=>createEntity(info)); 
+      entities.resumeEvents()
+    }
 
-    function drawMarkers(){
-        
-        var collection = myParseJson(request.responseText);
-        
-        deleteOld(collection);
-        
-        oldInfo = collection;
+    function networkReceive(){
+      
+        currentInfo = myParseJson(request.responseText);
+      
+        deleteOld();
 
-        entities.suspendEvents()
-        Object.values(collection).forEach(info=>createEntity(info)); 
-        entities.resumeEvents()
+        oldInfo = currentInfo;
+       
+        drawPlanes();
         
     }
 
