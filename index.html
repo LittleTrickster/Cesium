@@ -119,20 +119,6 @@ function myParseJson(tekstas){
     }
 
 
-    Sandcastle.addToolbarMenu([{
-    text : 'Billboard and Primitive',
-    onselect : function() {
-        addBillboardAndRectangle();
-//         Sandcastle.highlight(addBillboardAndRectangle);
-    }
-}, {
-    text : 'Point and Model',
-    onselect : function() {
-        addPointAndModel();
-//         Sandcastle.highlight(addPointAndModel);
-    }
-}]);
-    
 requestApi()
 
 setInterval(requestApi, 3000);
