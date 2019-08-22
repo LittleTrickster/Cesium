@@ -149,7 +149,7 @@
         let filtered  = Object.fromEntries(Object.entries(currentInfo).filter(([key,info])=> filter.nuo < info.alt && info.alt < filter.iki));
 
         if(filter.ijungtas){
-            filtered = Object.fromEntries(filtered.filter(([key,info])=>info.ong===filter.antZemes));
+            filtered = Object.fromEntries(Object.entries(currentInfo).filter(([key,info])=>info.ong===filter.antZemes));
         }
         hideNotVisible(filtered);
         entities.suspendEvents();
