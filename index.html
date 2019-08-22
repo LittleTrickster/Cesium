@@ -146,16 +146,16 @@
     }
 
     function drawPlanes(){
-        let filtered  = Object.entries(currentInfo).filter(([key,info])=> filter.nuo < info.alt && info.alt < filter.iki);
+        let filtered  = Object.fromEntries(Object.entries(currentInfo).filter(([key,info])=> filter.nuo < info.alt && info.alt < filter.iki));
 
         if(filter.ijungtas){
-            filtered = filtered.filter(([key,info])=>info.ong===filter.antZemes);
+            filtered = Object.fromEntries(filtered.filter(([key,info])=>info.ong===filter.antZemes));
         }
-        // hideNotVisible(filtered);
+        hideNotVisible(filtered);
         entities.suspendEvents();
 
         console.log(filtered);
-     //   Object.values(filtered).forEach(info=>createEntity(info));
+        Object.values(filtered).forEach(info=>createEntity(info));
         entities.resumeEvents();
     }
 
