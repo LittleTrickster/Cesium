@@ -133,7 +133,7 @@
 
 
     function hideNotVisible(collection){
-        entities
+        entities.values
             .filter(obj=>obj._id!=null)
             .map(obj=>obj._id)
             .filter(key=> collection[key]==null)
