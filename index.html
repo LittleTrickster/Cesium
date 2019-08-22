@@ -154,7 +154,7 @@
         hideNotVisible(filtered);
         entities.suspendEvents();
 
-        Object.keys(filtered).forEach(info=>createEntity(info));
+        Object.values(filtered).forEach(info=>createEntity(info));
         entities.resumeEvents();
     }
 
