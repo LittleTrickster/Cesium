@@ -144,7 +144,6 @@
     }
 
     function drawPlanes(){
-        entities.suspendEvents();
         var heightFiltered = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
         var groundFilter = heightFiltered;
         if(filter.ijungtas){
@@ -152,8 +151,9 @@
         }
 
         hideNotVisible(groundFilter);
+        entities.suspendEvents();
         Object.values(currentInfo).forEach(info=>createEntity(info));
-        entities.resumeEvents()
+        entities.resumeEvents();
     }
 
     function networkReceive(){
