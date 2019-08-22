@@ -154,7 +154,8 @@
         hideNotVisible(filtered);
         entities.suspendEvents();
 
-        Object.values(filtered).forEach(info=>createEntity(info));
+        console.log(filtered);
+     //   Object.values(filtered).forEach(info=>createEntity(info));
         entities.resumeEvents();
     }
 
