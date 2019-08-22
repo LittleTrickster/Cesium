@@ -30,7 +30,7 @@
         iki : 10000,
         ijungtas : true,
         antZemes : false,
-    }
+    };
 
     function getNrFrom(str){
         var value =  document.getElementById(str).value;
@@ -44,10 +44,11 @@
         filter.iki = getNrFrom("iki");
         filter.ijungtas = document.getElementById("ijungtas").checked;
         filter.antZemes = document.getElementById("zeme").checked;
+        drawPlanes()
     }
 
     var currentInfo = {};
-    var oldInfo = {};
+
 
 
 
@@ -131,19 +132,26 @@
 
 
 
-    function deleteOld(){
-        Object.keys(oldInfo)
-            .filter(key=> currentInfo[key]==null)
-            .forEach(key=>entities.removeById(key));
+    function hideNotVisible(collection){
+        entities
+            .filter(obj=>obj._id!=null)
+            .map(obj=>obj._id)
+            .filter(key=> collection[key]==null)
+            .forEach(key=>entities.removeById(key))
+
+
+
     }
 
     function drawPlanes(){
-        entities.suspendEvents()
+        entities.suspendEvents();
         var heightFiltered = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
         var groundFilter = heightFiltered;
         if(filter.ijungtas){
             groundFilter = heightFiltered.filter(info=>info.ong==filter.antZemes);
         }
+
+        hideNotVisible(groundFilter);
         groundFilter.forEach(info=>createEntity(info));
 
 
@@ -154,9 +162,9 @@
 
         currentInfo = myParseJson(request.responseText);
 
-        deleteOld();
+        //deleteOld();
 
-        oldInfo = currentInfo;
+       // oldInfo = currentInfo;
 
         drawPlanes();
 
