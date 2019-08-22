@@ -149,10 +149,10 @@
         if(filter.ijungtas){
             filtered = filtered.filter(info=>info.ong==filter.antZemes);
         }
-        hideNotVisible(Object.values(currentInfo));
+        hideNotVisible(filtered);
         entities.suspendEvents();
 
-        Object.values(currentInfo).forEach(info=>createEntity(info));
+        filtered.forEach(info=>createEntity(info));
         entities.resumeEvents();
     }
 
@@ -170,7 +170,7 @@
 
 
     requestApi();
-
+    refreshFilter();
     setInterval(requestApi, 3000);
 
 
