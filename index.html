@@ -137,7 +137,10 @@
             .filter(obj=>obj._id!=null)
             .map(obj=>obj._id)
             .filter(key=> collection[key]==null)
-            .forEach(key=>entities.removeById(key))
+            .forEach(key=>{
+            console.log("not found "+key);
+                entities.removeById(key);
+            })
 
 
 
