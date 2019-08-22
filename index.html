@@ -149,9 +149,9 @@
         if(filter.ijungtas){
             filtered = filtered.filter(info=>info.ong==filter.antZemes);
         }
-
-        entities.suspendEvents();
         hideNotVisible(Object.values(currentInfo));
+        entities.suspendEvents();
+    
         Object.values(currentInfo).forEach(info=>createEntity(info));
         entities.resumeEvents();
     }
