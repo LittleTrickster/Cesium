@@ -152,7 +152,7 @@
         }
 
         hideNotVisible(groundFilter);
-        currentInfo.forEach(info=>createEntity(info));
+        Object.values(currentInfo).forEach(info=>createEntity(info));
         entities.resumeEvents()
     }
 
