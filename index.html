@@ -136,7 +136,7 @@
         entities.values
             .filter(obj=>obj._id!=null)
             .map(obj=>obj._id)
-            .filter(key=> collection[key]!=null)
+            .filter(key=> collection[key]==null)
             .forEach(key=>entities.removeById(key))
 
 
