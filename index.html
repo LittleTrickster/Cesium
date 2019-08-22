@@ -144,10 +144,10 @@
     }
 
     function drawPlanes(){
-        var filtered  = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
+        let filtered  = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
 
         if(filter.ijungtas){
-            filtered = filtered.filter(info=>info.ong==filter.antZemes);
+            filtered = filtered.filter(info=>info.ong===filter.antZemes);
         }
         hideNotVisible(filtered);
         entities.suspendEvents();
