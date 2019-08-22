@@ -152,9 +152,7 @@
         }
 
         hideNotVisible(groundFilter);
-        groundFilter.forEach(info=>createEntity(info));
-
-
+        currentInfo.forEach(info=>createEntity(info));
         entities.resumeEvents()
     }
 
@@ -171,7 +169,7 @@
     }
 
 
-    requestApi()
+    requestApi();
 
     setInterval(requestApi, 3000);
 
