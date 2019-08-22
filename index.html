@@ -139,7 +139,13 @@ function myParseJson(tekstas){
     
     fun drawPlanes(){
       entities.suspendEvents()
-      
+          var heightFiltered = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
+      var groundFilter = heightFiltered;
+      if(filter.ijungtas){
+      groundFilter = heightFiltered.filter(info=>info.ong==filter.antZemes);
+      }
+      groundFilter.forEach(info=>createEntity(info));
+     
   
       entities.resumeEvents()
     }
