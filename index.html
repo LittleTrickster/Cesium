@@ -147,7 +147,7 @@
         var filtered  = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
 
         if(filter.ijungtas){
-            filtered = heightFiltered.filter(info=>info.ong==filter.antZemes);
+            filtered = filtered.filter(info=>info.ong==filter.antZemes);
         }
 
         entities.suspendEvents();
