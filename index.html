@@ -138,7 +138,6 @@
             .map(obj=>obj._id)
             .filter(key=> collection[key]==null)
             .forEach(key=>{
-            console.log("not found "+key);
                 entities.removeById(key);
             })
 
