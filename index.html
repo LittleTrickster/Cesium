@@ -144,15 +144,15 @@
     }
 
     function drawPlanes(){
-        var heightFiltered = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
-        var groundFilter = heightFiltered;
+        var filtered  = Object.values(currentInfo).filter(info=> filter.nuo < info.alt && info.alt < filter.iki);
+
         if(filter.ijungtas){
-            groundFilter = heightFiltered.filter(info=>info.ong==filter.antZemes);
+            filtered = heightFiltered.filter(info=>info.ong==filter.antZemes);
         }
 
-        hideNotVisible(groundFilter);
         entities.suspendEvents();
-        Object.values(currentInfo).forEach(info=>createEntity(info));
+        hideNotVisible(filtered);
+        filtered.forEach(info=>createEntity(info));
         entities.resumeEvents();
     }
 
